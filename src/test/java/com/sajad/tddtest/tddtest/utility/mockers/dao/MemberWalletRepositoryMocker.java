@@ -118,7 +118,7 @@ public class MemberWalletRepositoryMocker implements Mocker<MemberWalletReposito
             }
         });
 
-
+        when(memberWalletRepository.findAll()).thenReturn(memberWallets);
         return memberWalletRepository;
     }
 

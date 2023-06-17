@@ -60,6 +60,7 @@ public class ExchangeCoinRepositoryMocker implements Mocker<ExchangeCoinReposito
             String baseSymbol = (String) invocationOnMock.getArgument(0);
             return exchangeCoins.stream().filter(exchangeCoin -> exchangeCoin.getBaseSymbol().equals(baseSymbol)).collect(Collectors.toList());
         });
+        when(exchangeCoinRepository.findAll()).thenReturn(exchangeCoins);
         return exchangeCoinRepository;
     }
 

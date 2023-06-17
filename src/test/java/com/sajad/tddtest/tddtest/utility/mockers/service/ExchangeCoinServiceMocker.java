@@ -28,7 +28,7 @@ public class ExchangeCoinServiceMocker implements Mocker<ExchangeCoinService> {
             String baseSymbol = invocationOnMock.getArgument(0, String.class);
             return exchangeCoinRepository.findByBaseSymbol(baseSymbol);
         });
-
+        when(exchangeCoinService.findAll()).thenAnswer(invocationOnMock -> exchangeCoinRepository.findAll());
         return exchangeCoinService;
     }
 }

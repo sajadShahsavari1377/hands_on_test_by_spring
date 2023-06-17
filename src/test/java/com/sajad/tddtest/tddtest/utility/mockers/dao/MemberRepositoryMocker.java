@@ -53,6 +53,7 @@ public class MemberRepositoryMocker implements Mocker<MemberRepository> {
             String username = invocationOnMock.getArgument(0, String.class);
             return members.stream().filter(member -> member.getUsername().equals(username)).findAny();
         });
+        when(memberRepository.findAll()).thenReturn(members);
         return memberRepository;
     }
 }

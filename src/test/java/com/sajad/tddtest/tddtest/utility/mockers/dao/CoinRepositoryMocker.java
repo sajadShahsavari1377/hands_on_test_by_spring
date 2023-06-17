@@ -3,7 +3,6 @@ package com.sajad.tddtest.tddtest.utility.mockers.dao;
 
 import com.sajad.tddtest.tddtest.dao.CoinRepository;
 import com.sajad.tddtest.tddtest.model.entity.Coin;
-import com.sajad.tddtest.tddtest.utility.CoinConstants;
 import com.sajad.tddtest.tddtest.utility.mockers.Mocker;
 import org.mockito.Mockito;
 
@@ -16,7 +15,7 @@ import static org.mockito.Mockito.when;
 import static com.sajad.tddtest.tddtest.utility.CoinConstants.*;
 
 public class CoinRepositoryMocker  implements Mocker<CoinRepository> {
-    private List<Coin> coinsToBeInserted;
+    private List<Coin> coins;
     private Coin bitcoin;
     private Coin semiBitCoin;
     private Coin etherium;
@@ -35,32 +34,33 @@ public class CoinRepositoryMocker  implements Mocker<CoinRepository> {
         shiba = Coin.builder().id(4l).name(NAMES.SHIB).displayName(DISPLAY_NAME.SHIB)
                 .unit(UNITS.SHIB)
                 .build();
-        coinsToBeInserted = List.of(bitcoin,etherium,shiba,semiBitCoin);
+        coins = List.of(bitcoin,etherium,shiba,semiBitCoin);
     }
 
     @Override
     public  CoinRepository getMock() {
         CoinRepository coinRepository = Mockito.mock(CoinRepository.class);
-        when(coinRepository.findAll()).thenReturn(coinsToBeInserted);
+        when(coinRepository.findAll()).thenReturn(coins);
         when(coinRepository.findByName(anyString())).thenAnswer(invocationOnMock -> {
             String coinName = (String) invocationOnMock.getArgument(0);
-            return coinsToBeInserted.stream().filter(coin -> coin.getName().equals(coinName)).findAny();
+            return coins.stream().filter(coin -> coin.getName().equals(coinName)).findAny();
         });
         when(coinRepository.findAllByDisplayName(anyString())).thenAnswer(invocationOnMock -> {
             String displayName = (String) invocationOnMock.getArgument(0);
-            return coinsToBeInserted.stream().filter(coin -> coin.getDisplayName().equals(displayName)).collect(Collectors.toList());
+            return coins.stream().filter(coin -> coin.getDisplayName().equals(displayName)).collect(Collectors.toList());
         });
         when(coinRepository.findById(anyLong())).thenAnswer(invocationOnMock -> {
             Long id = (Long) invocationOnMock.getArgument(0);
-            Optional<Coin> foundCoinById = coinsToBeInserted.stream().filter(coin -> coin.getId() == id).findAny();
+            Optional<Coin> foundCoinById = coins.stream().filter(coin -> coin.getId() == id).findAny();
             return foundCoinById;
         });
+        when(coinRepository.findAll()).thenReturn(coins);
         return coinRepository;
     }
 
 
     public List<Coin> getAllCoins() {
-        return coinsToBeInserted;
+        return coins;
     }
 
 }

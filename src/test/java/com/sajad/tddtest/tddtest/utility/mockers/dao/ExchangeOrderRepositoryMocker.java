@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -33,6 +34,7 @@ public class ExchangeOrderRepositoryMocker implements Mocker<ExchangeOrderReposi
             exchangeOrderMap.put(inputExchangeOrder.getId(), inputExchangeOrder);
             return inputExchangeOrder;
         });
+        when(exchangeOrderRepository.findAll()).thenReturn(exchangeOrderMap.values().stream().collect(Collectors.toList()));
         return exchangeOrderRepository;
     }
 }

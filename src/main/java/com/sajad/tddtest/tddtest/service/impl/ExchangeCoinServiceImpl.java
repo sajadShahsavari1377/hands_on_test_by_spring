@@ -26,6 +26,11 @@ public class ExchangeCoinServiceImpl implements ExchangeCoinService {
     }
 
     @Override
+    public List<ExchangeCoin> findAll() {
+        return exchangeCoinRepository.findAll();
+    }
+
+    @Override
     public GeneralExchangeCoinInfo findBySymbol(String symbol) {
         return null;
     }
@@ -38,5 +43,10 @@ public class ExchangeCoinServiceImpl implements ExchangeCoinService {
     @Override
     public GeneralExchangeCoinInfo findByBaseSymbol(String coinSymbol) {
         return null;
+    }
+
+    @Override
+    public void deleteAll() {
+        exchangeCoinRepository.deleteAll();
     }
 }

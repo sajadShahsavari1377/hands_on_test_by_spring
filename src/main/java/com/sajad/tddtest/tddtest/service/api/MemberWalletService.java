@@ -12,6 +12,8 @@ public interface MemberWalletService {
 
     MemberWallet save(MemberWallet memberWallet);
 
+    List<MemberWallet> findAll();
+
 
     Optional<MemberWallet> findByMemberIdAndSymbol(long memberId, String symbol);
     Optional<MemberWallet> findById(Long walletId);
@@ -30,4 +32,7 @@ public interface MemberWalletService {
     int increaseFrozenBalance(long walletId,BigDecimal increaseAmount);
 
     void saveAll(List<MemberWallet> memberWallets);
+
+    //    important point : we do not have such a delete method in a real application, this is just for test
+    void deleteAll();
 }

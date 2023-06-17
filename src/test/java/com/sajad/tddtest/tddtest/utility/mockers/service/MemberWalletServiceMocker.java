@@ -44,6 +44,7 @@ public class MemberWalletServiceMocker implements Mocker<MemberWalletService> {
         when(memberWalletService.thawBalance(anyLong(),any(BigDecimal.class))).thenAnswer(invocationOnMock -> {
             return memberWalletRepository.thawBalance(invocationOnMock.getArgument(0, Long.class), invocationOnMock.getArgument(1, BigDecimal.class));
         });
+        when(memberWalletService.findAll()).thenAnswer(invocationOnMock -> memberWalletRepository.findAll());
         return memberWalletService;
     }
 }

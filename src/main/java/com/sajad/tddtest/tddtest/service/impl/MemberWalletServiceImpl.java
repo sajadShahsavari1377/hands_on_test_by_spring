@@ -1,7 +1,8 @@
-package com.sajad.tddtest.tddtest.service.api;
+package com.sajad.tddtest.tddtest.service.impl;
 
 import com.sajad.tddtest.tddtest.dao.MemberWalletRepository;
 import com.sajad.tddtest.tddtest.model.entity.MemberWallet;
+import com.sajad.tddtest.tddtest.service.api.MemberWalletService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,12 @@ public class MemberWalletServiceImpl implements MemberWalletService {
     @Override
     public MemberWallet save(MemberWallet memberWallet) {
         return memberWalletRepository.save(memberWallet);
+    }
+
+    // TODO: 6/17/2023 this method is just for unit test
+    @Override
+    public List<MemberWallet> findAll() {
+        return memberWalletRepository.findAll();
     }
 
     @Override
@@ -58,5 +65,13 @@ public class MemberWalletServiceImpl implements MemberWalletService {
     @Override
     public void saveAll(List<MemberWallet> memberWallets) {
         memberWalletRepository.saveAll(memberWallets);
+    }
+
+
+    @Override
+    //    important point : we do not have such a delete method in a real application, this is just for test
+    public void deleteAll() {
+
+        memberWalletRepository.deleteAll();
     }
 }
