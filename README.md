@@ -1,6 +1,7 @@
 # hands_on_test_by_spring
 
-this project is here to show two important things :<br> 
+## Goal
+This project is here to show two important things :<br> 
 1- the first one is  how to write test<br>
 > this project demonstartes how to write test using Mockito and how to write test using spring annotations
 > beside that you will get familiar with annotations like @SpringBootTest and @ExtendsWith(SpringExtentions.class)  and also you would know the differences between them 
@@ -12,13 +13,32 @@ this project is here to show two important things :<br>
 so let's go.<br>
 
 ## project dictionary
-The first thing that every project needs is a dictionary which explain names which are used ini project, so let's have one. <br>
-1. coin : it represent a cryptocurrency coin like 'BTCB' or 'USDT'
-2. market : as a String , market represent a pair coin like 'BTC/USDT' or 'DOGE/USDT' 
-3. symbol : as a String , symbol can refere to two thing 1- iso of a coin like 'BTCB' or 'USDT' 2- also like market, it can refere to a pair coin like 'BTCB/USDT' or 'DOGE/USDT'
-4. exchangeCoin : as an entity, it represents the entity of a market for example the market of 'BTCB/USDT' or 'DOGE/USDT'
-5. coin : as an entity, it represents the entity of a cryptocurrency coin like 'BTC' or 'USDT'
-6. memberWallet: as an entity, it represents the wallet of a specific user on a specific coin, for example an instance of this entity represent the wallet of member with id 2 on 'BTC' coin
-7. exchangeOrder: as an entity, it represents the one order of a specific user on a specific market (exchangeCoin), for example  an instance of this entity represents one order of member with id 2 on 'BTCB/USDT' market
-8. (order)direction: which is a property of exchangeOrder. this field show the fact that an order is buy order or a sell one
-9. (order)type: which is a property of exchangeOrder. this field show the fact that an order is limit_price order or a market_price (fast_matching_order) one
+The first thing that every project needs is a dictionary which explain names which are used ini project, so let's have one <a href="https://github.com/sajadShahsavari1377/hands_on_test_by_spring/data-dictionary.md">here</a>. <br>
+
+
+## hands on unit testing and integration testing
+Let's ask some important questions first then answer it: <br>
+1. what is unit test definition?
+2. what is integration test definition?
+3. can we have unit test for a layer which is integrated by the nature (like service layer)?
+4. if we have many integration tests, is unit test needed (people ask this question because they think integration test has unit test in itself) ? if yes, then why?
+
+Now follow me to answer these questions:<br>
+### 1-Unit test is a test for smallest testable unit of project:<br>
+<p>
+ Not a bad definition but is not complete. Service layer is not the smallest testable unit of my project,
+ but I still need unit test for that.<br>
+
+ so then, what is the complete definition? In my opinion, unit test is a test which you need for every unit of your project
+ but independent of other components (what do you mean by that ?!)<br>.
+ Suppose you have an ExchangeOrderService which is a service layer class.
+ A process like adding an ExchangeOrder has many dependency to other components or services of our project, as a good example,
+ to check the balance of the member, it is depended on MemberWalletService.<br>
+ So now how can you how unit test for this class?
+ what is the solution? is that needed to have unit test for such a component? why ?
+ to address this problem, we get help from a concept which is Mocking, which help us to test our project units independent of other units.
+ now let's imagine our 
+ 
+</p>
+
+
